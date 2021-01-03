@@ -1,14 +1,22 @@
 %April 23, 2018
 %Sophia and Meghan
 %Ms. Krasteva
-%This program ..
+%This program helps you decide what to do in a tough decision. (stuck in a castle)
 
+%Variable declaration
+var ending1, ending2, ending3 : int
+ending1 := 0
+ending2 := 0
+ending3 := 0
+
+%Program title
 procedure title
     locate (1, 33)
     put "The Castle Story"
     put ""
 end title
 
+%Program introduction
 procedure intro
     var reply : string (1)
     title
@@ -22,34 +30,114 @@ procedure intro
     getch (reply)
 end intro
 
-procedure userInput
-    var answer1, answer2 : int
-    put "Pick an option: 1 or 2"
-    put "1) Go out to the bridge"
-    put "2) Try to swim across the river"
+%User input question 1 and processing
+procedure userInput1
+    var answer1 : string
+    put "Are you or your friend good at reasoning with and calming down people? (yes or  no)"
     get answer1
-    if answer1 = 1 then
-	put "You and your friend walk out of the castle to the bridge. The madman is standing"
-	put "there, with a crazy look in his eyes. He looks dishevelled but otherwise not"
-	put "dangerous. Pick an option: 1 or 2"
-	put "1) Try to reason with him to let you pass"
-	put "2) Try to run as fast as you can around the madman"
-	get answer2
-	if answer2 = 1 then
-	    put "You and your friend approach the man carefully. You ask him if he may move aside"
-	    put "to let you across the bridge. Unfortunately, he smiles and says you can never"
-	    put "leave the castle."
-	elsif answer2 = 2 then
-	    put "You and your friend try to run as fast as you can before the madman can react."
-	    put "Unfortunately, the madman notices you right away and starts hissing. You and"
-	    put "your friend retaliate and run back to the castle entrance."
-	end if
-    if answer1 = 2 then 
+    if answer1 = "yes" then
+        ending1 := ending1 + 1
+    elsif answer1 = "no" then
+        ending1 := ending1
     else
-	put "Please pick one of the options: 1, 2, or 3"
-	userInput
+        put "Error. Please respond 'yes' or 'no'."
+        userInput1
     end if
-end userInput
+end userInput1
+
+%User input question 2 and processing
+procedure userInput2
+    var answer2 : string
+    put "Are you or your friend able to fight and defend yourself? (yes or no)"
+    get answer2
+    if answer2 = "yes" then
+        ending1 := ending1 + 1
+    elsif answer2 = "no" then
+        ending1 := ending1
+    else
+        put "Error. Please respond 'yes' or 'no'."
+        userInput2
+    end if
+end userInput2
+
+%User input question 3 and processing
+procedure userInput3
+    var answer3 : string
+    put "Can you or your friend easily access money after escaping and come back? (yes orno)"
+    get answer3
+    if answer3 = "yes" then
+        ending2 := ending2 + 1
+    elsif answer3 = "no" then
+        ending2 := ending2
+    else
+        put "Error. Please respond 'yes' or 'no'."
+        userInput3
+    end if
+end userInput3
+
+%User input question 4 and processing
+procedure userInput4
+    var answer4 : string
+    put "Are you or your friend comfortable with waiting in the castle for the other to  come back, and you trust each other? (yes or no)"
+    get answer4
+    if answer4 = "yes" then
+        ending2 := ending2 + 1
+    elsif answer4 = "no" then
+        ending2 := ending2
+    else
+        put "Error. Please respond 'yes' or 'no'."
+        userInput4
+    end if
+end userInput4
+
+%User input question 5 and processing
+procedure userInput5
+    var answer5 : string
+    put "Can you and your friend swim? (yes or no)"
+    get answer5
+    if answer5 = "yes" then
+        ending3 := ending3 + 1
+    elsif answer5 = "no" then
+        ending3 := ending3
+    else
+        put "Error. Please respond 'yes' or 'no'."
+        userInput5
+    end if
+end userInput5
+
+%User input question 6 and processing
+procedure userInput6
+    var answer6 : string
+    put "Is the water dangerous to swim in? (e.g. there are crocodiles or the current is too strong)? (yes or no)"
+    get answer6
+    if answer6 = "yes" then
+        ending3 := ending3 - 1
+    elsif answer6 = "no" then
+        ending3 := ending3 + 1
+    else
+        put "Error. Please respond 'yes' or 'no'."
+        userInput6
+    end if
+end userInput6
+
+%Program processing and output
+procedure display
+    if ending2 = 2 then
+        put "You should use the boat to escape the castle then come back for your friend     with more money to get them out, or vice versa."
+    elsif ending3 = 2 then
+        put "You should swim across the river."
+    elsif ending1 = 2 then
+        put "You should go out to the bridge and confront the madman to escape."
+    else
+        put "You should call the police to come and get you out of the castle."
+    end if
+end display
 
 intro
-userInput
+userInput1
+userInput2
+userInput3
+userInput4
+userInput5
+userInput6
+display
